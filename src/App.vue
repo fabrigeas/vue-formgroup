@@ -1,22 +1,33 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    {{name}}
+      <formGroup 
+      :label="'Name'"
+      :error="name.length < 3"
+      :errorMessage="'Please fill this field!!'"
+      :successMessage="'looks good!'"
+      :model.sync="name"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import formGroup from './components/formGroup.vue'
 
 export default {
   name: 'App',
+  data: ()=>({
+    name: ""
+  }),
   components: {
-    HelloWorld
+    formGroup
   }
 }
 </script>
 
 <style>
+#app {
+  padding: 2rem;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

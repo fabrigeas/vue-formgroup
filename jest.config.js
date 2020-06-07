@@ -1,4 +1,5 @@
 module.exports = {
   preset: '@vue/cli-plugin-unit-jest',
-  verbose: true
+  verbose: true,
+  silent: true,
 }

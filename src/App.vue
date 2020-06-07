@@ -3,9 +3,9 @@
     {{name}}
       <formGroup 
       :label="'Name'"
-      :error="name.length < 3"
-      :errorMessage="'Please fill this field!!'"
-      :successMessage="'looks good!'"
+      :invalid="name.length < 3"
+      :invalidFeedback="'Please fill this field!!'"
+      :validFeedback="'looks good!'"
       :model.sync="name"/>
   </div>
 </template>

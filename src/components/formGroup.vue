@@ -6,17 +6,18 @@
       :id="id"
       :model="model"
       :type="type"
-      :error="error"
+      :invalid="invalid"
       :classes="classes"
       :props="props"
       :data="data"
       :events="events"
+      :css="css"
       @update="$emit('update:model', $event)"
     >
       <slot></slot>
     </form-control>
-    <div v-if="successMessage" class="valid-feedback">{{successMessage || 'Looks good!'}}</div>
-    <div v-if="errorMessage" class="invalid-feedback">{{errorMessage || 'Please fill this field!'}}</div>
+    <div v-if="validFeedback" class="valid-feedback">{{validFeedback || 'Looks good!'}}</div>
+    <div v-if="invalidFeedback" class="invalid-feedback">{{invalidFeedback || 'Please fill this field!'}}</div>
   </div>
 </template>
 
@@ -31,11 +32,11 @@ Vue.component("form-control", {
       {
         class: [
           "form-control",
-          this.error ? "is-invalid" : "is-valid",
+          this.invalid ? "is-invalid" : "is-valid",
           ...this.clasNames
         ],
         style: {
-          ...this.style
+          ...this.css
         },
         attrs: {
           id: this.id,
@@ -56,9 +57,9 @@ Vue.component("form-control", {
   props: {
     label: { type: String },
     type: { type: String, default: "text" },
-    error: { type: Boolean },
-    errorMessage: { type: String },
-    successMessage: { type: String },
+    invalid: { type: Boolean },
+    invalidFeedback: { type: String },
+    validFeedback: { type: String },
     css: { type: Object },
     classes: { type: String },
     props: Object,
@@ -95,9 +96,6 @@ Vue.component("form-control", {
       } else {
         return {};
       }
-    },
-    style: function() {
-      return this.css;
     }
   }
 });
@@ -107,9 +105,9 @@ export default {
     model: { type: String, required: true },
     label: { type: String },
     type: { type: String, default: "text" },
-    error: { type: Boolean },
-    successMessage: { type: String },
-    errorMessage: { type: String },
+    invalid: { type: Boolean },
+    validFeedback: { type: String },
+    invalidFeedback: { type: String },
     css: { type: Object },
     classes: { type: String },
     props: Object,

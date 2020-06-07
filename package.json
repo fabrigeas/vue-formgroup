@@ -1,13 +1,14 @@
 {
-  "name": "formgroup",
-  "version": "0.1.0",
-  "private": true,
+  "name": "vue-formgroup",
+  "version": "1.0.0",
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test": "jest --watch --config=./jest.config.js --coverage",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build-bundle": "vue-cli-service build --target lib --name vue-formgroup ./src/components/index.js"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -55,5 +56,34 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "main": "./dist/vue-formgroup.common.js",
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js",
+    "plugins/*"
+  ],
+  "description": "## A vue component that ressembles bootstraps formGroup + formControl",
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": [
+    "vue",
+    "vueComponent",
+    "formGroup",
+    "formControl"
+  ],
+  "author": "Fabrice Feugang Kemegni",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabrigeas/vue-formgroup.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fabrigeas/vue-formgroup/issues"
+  },
+  "homepage": "https://github.com/fabrigeas/vue-formgroup#readme"
 }

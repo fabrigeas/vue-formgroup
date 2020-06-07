@@ -1,6 +1,6 @@
 {
-  "name": "vue-formgroup",
-  "version": "1.0.1",
+  "name": "formgroup",
+  "version": "1.0.3",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -8,7 +8,8 @@
     "test": "jest --watch --config=./jest.config.js --coverage",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "build-bundle": "vue-cli-service build --target lib --name vue-formgroup ./src/components/index.js"
+    "build-bundle": "vue-cli-service build --target lib --name formgroup ./src/components/index.js",
+    "publish": "vue-cli-service build --target lib --name formgroup ./src/components/index.js && npm publish --access public"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -57,7 +58,7 @@
     "last 2 versions",
     "not dead"
   ],
-  "main": "./dist/vue-formgroup.common.js",
+  "main": "./dist/formgroup.common.js",
   "files": [
     "dist/*",
     "src/*",

@@ -4,7 +4,7 @@ A vue component input that emulates bootstrap's formGroup formControl and is-val
 
 ## usage
 
-    npm install vue-formgroup
+    npm install formgroup
 
     <template>
       <div id="app">

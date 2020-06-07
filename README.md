@@ -398,3 +398,9 @@ Must be combined with [:invalid=true](###invalid)
 
 ### events {Object} - events
 
+## Todo
+
+- Implement type=checkbox
+- Implement other event types
+- Reduce the size of css file by importing only required classes from bootstrap
+

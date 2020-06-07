@@ -2,6 +2,11 @@
 
 A vue component input that emulates bootstrap's formGroup formControl and is-valid
 
+## Demo
+
+- [Codesandbox](https://codesandbox.io/s/github/fabrigeas/vue-formgroup)
+- [Demo](https://d04tu.csb.app/)
+
 ## usage
 
     npm install formgroup

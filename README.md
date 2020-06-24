@@ -1,4 +1,4 @@
-# formgroup
+# vue-form-group
 
 A vue component input that emulates bootstrap's formGroup formControl and is-valid
 
@@ -9,7 +9,7 @@ A vue component input that emulates bootstrap's formGroup formControl and is-val
 
 ## usage
 
-    npm install formgroup
+    npm install @fabrigeas/react-formg-roup
 
     ## register the component
     src/main.js
@@ -404,6 +404,7 @@ Must be combined with [:invalid=true](###invalid)
 
 ## Todo
 
+- Migrate to typescrip
 - Implement type=checkbox
 - Implement other event types
 - Reduce the size of css file by importing only required classes from bootstrap

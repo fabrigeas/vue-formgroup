@@ -215,10 +215,6 @@ export default {
   background-color: #e9ecef;
   opacity: 1;
 }
-// select.form-control:focus::-ms-value {
-//   color: #495057;
-//   background-color: #fff;
-// }
 .form-control-file,
 .form-control-range {
   display: block;

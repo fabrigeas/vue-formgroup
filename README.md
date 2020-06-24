@@ -11,6 +11,10 @@ A vue component input that emulates bootstrap's formGroup formControl and is-val
 
     npm install formgroup
 
+    ## register the component
+    src/main.js
+    import 'form-group';
+
     <template>
       <div id="app">
         {{name}}

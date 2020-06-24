@@ -120,7 +120,7 @@ export default {
 };
 </script>
 
-<style scoped >
+<style >
 
 .form-group {
   margin: 1rem;

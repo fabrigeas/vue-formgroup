@@ -1,6 +1,6 @@
 {
   "name": "form-group",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",

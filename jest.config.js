@@ -1,5 +1,3 @@
 module.exports = {
-  preset: '@vue/cli-plugin-unit-jest',
-  verbose: true,
-  silent: true,
-}
+  preset: "@vue/cli-plugin-unit-jest/presets/typescript-and-babel"
+};

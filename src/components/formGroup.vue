@@ -1,108 +1,105 @@
 <template>
   <div class="form-group">
-    <label v-if="this.label" class="form-label" :for="id">{{label}}:</label>
+    <label v-if="this.label" class="form-label" :for="id">{{ label }}:</label>
 
-    <form-control
+    <FormControl
       :id="id"
-      :model="model"
+      :model="String(model)"
+      :value="String(model)"
       :type="type"
-      :invalid="invalid"
+      :invalid="isInvalid"
       :classes="classes"
-      :props="props"
-      :data="data"
+      :attrs="attrs"
+      :dataset="dataset"
       :events="events"
       :css="css"
       @update="$emit('update:model', $event)"
     >
       <slot></slot>
-    </form-control>
-    <div v-if="validFeedback" class="valid-feedback">{{validFeedback || 'Looks good!'}}</div>
-    <div v-if="invalidFeedback" class="invalid-feedback">{{invalidFeedback || 'Please fill this field!'}}</div>
+    </FormControl>
+    <div v-if="validFeedback" class="valid-feedback">{{ validFeedback }}</div>
+    <div v-if="invalidFeedback" class="invalid-feedback">
+      {{ invalidFeedback }}
+    </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from "vue";
 import { v4 as uuidv4 } from "uuid";
 
-Vue.component("form-control", {
+const FormControl = Vue.extend({
+  props: {
+    id: { type: String },
+    label: { type: String },
+    value: { type: String },
+    type: { type: String, default: "text" },
+    invalid: { type: Boolean },
+    invalidFeedback: { type: String },
+    validFeedback: { type: String },
+    css: { type: Object },
+    classes: { type: String },
+    attrs: Object,
+    dataset: Object,
+    events: Object
+  },
+
   render: function(createElement) {
     return createElement(
-      this.form,
+      this.type === "textarea" || this.type === "select" ? this.type : "input",
       {
         class: [
           "form-control",
           this.invalid ? "is-invalid" : "is-valid",
-          ...this.clasNames
+          ...(this.classes
+            ? this.classes
+                .split(" ")
+                .toString()
+                .split(",")
+            : [])
         ],
         style: {
           ...this.css
         },
         attrs: {
           id: this.id,
+          value: this.value,
           type: this.type,
-          ...this.props,
+          ...this.attrs,
           ...this.dataset
         },
         on: {
-          keyup: $event => this.$emit("update", $event.target.value),
-          keydown: $event => this.$emit("keydown", $event.target.value),
-          change: $event => this.$emit("change", $event.target.value),
+          keyup: ($event: Event) => this.onKeyUp($event),
+          change: ($event: Event) =>
+            this.$emit("update", ($event.target as HTMLInputElement).value),
           ...this.events
         }
       },
-      this.$slots.default // array of children
+      this.$slots.default
     );
   },
-  props: {
-    label: { type: String },
-    type: { type: String, default: "text" },
-    invalid: { type: Boolean },
-    invalidFeedback: { type: String },
-    validFeedback: { type: String },
-    css: { type: Object },
-    classes: { type: String },
-    props: Object,
-    data: Object,
-    events: Object
-  },
-  computed: {
-    form: function() {
-      switch (this.type) {
-        case "textarea":
-        case "select":
-          return this.type;
-        default:
-          return "input";
-      }
-    },
-    clasNames: function() {
-      return this.classes
-        ? this.classes
-            .split(" ")
-            .toString()
-            .split(",")
-        : [];
-    },
-    dataset: function() {
-      const result = {};
 
-      if (this.data) {
-        for (let entry of Object.entries(this.data)) {
-          const [key, value] = entry;
-          result[`data-${key}`] = value;
-        }
-        return result;
-      } else {
-        return {};
+  methods: {
+    onKeyUp: function(event: Event) {
+      if (this.type === "textarea") {
+        const textarea = this.$el as HTMLTextAreaElement;
+        textarea.style.height = "auto";
+        textarea.style.height = textarea.scrollHeight + "px";
       }
+
+      const value = (event.target as HTMLInputElement).value;
+      this.$emit("update", value);
     }
   }
 });
 
-export default {
+export default Vue.extend({
+  components: {
+    FormControl
+  },
+
   props: {
-    model: { type: String, required: true },
+    model: { required: true, type: [String, Boolean, Number] },
     label: { type: String },
     type: { type: String, default: "text" },
     invalid: { type: Boolean },
@@ -110,22 +107,38 @@ export default {
     invalidFeedback: { type: String },
     css: { type: Object },
     classes: { type: String },
-    props: Object,
+    attrs: Object,
     data: Object,
     events: Object
   },
+
   computed: {
-    id: () => uuidv4()
+    id: () => uuidv4(),
+    dataset: function() {
+      const result: Record<string, string> = {};
+
+      if (this.data) {
+        for (const [key, value] of Object.entries(this.data)) {
+          result[`data-${key}`] = value as string;
+        }
+      }
+      return result;
+    },
+    isInvalid: function() {
+      return (
+        this.invalid ||
+        (this.attrs?.required ? String(this.model).length < 2 : false)
+      );
+    }
   }
-};
+});
 </script>
 
-<style >
-
+<style scoped lang="scss">
 .form-group {
-  margin: 1rem;
+  margin: 0.5rem 0;
   text-align: left;
-  padding: 1rem;
+  padding: 0.5rem 0;
 
   display: -ms-flexbox;
   display: flex;
@@ -137,18 +150,16 @@ export default {
   align-items: center;
 
   [type="checkbox"],
-  [type="radio"]
-  {
+  [type="radio"] {
     width: auto;
     border: none;
-    &:focus{
+    &:focus {
       border: none;
     }
   }
 }
 .form-group.radio,
-.form-group.checkbox
-{
+.form-group.checkbox {
   width: auto !important;
 }
 
@@ -159,6 +170,7 @@ export default {
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   position: relative;
+  padding: 0 0.5rem;
 
   font-weight: 400;
   line-height: 1.5;
@@ -168,13 +180,18 @@ export default {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  &:focus{
+  &:focus {
     color: #495057;
     background-color: #fff;
     border-color: #80bdff;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
   }
+}
+textarea.form-control {
+  padding: 0.5rem;
+  overflow: hidden;
+  outline: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .form-control {
@@ -236,7 +253,6 @@ export default {
   font-size: 80%;
   color: #dc3545;
 }
-
 
 .is-valid ~ .valid-feedback,
 .is-valid ~ .valid-tooltip,
@@ -327,7 +343,6 @@ textarea.form-control.is-valid {
   box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
 
-
 .is-invalid ~ .invalid-feedback,
 .is-invalid ~ .invalid-tooltip,
 .was-validated :invalid ~ .invalid-feedback,
@@ -415,5 +430,12 @@ textarea.form-control.is-invalid {
 .was-validated .custom-file-input:invalid:focus ~ .custom-file-label {
   border-color: #dc3545;
   box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+label {
+  margin-bottom: -0.3rem;
+  background: white;
+  z-index: 2;
+  margin-left: 0.5rem;
 }
 </style>

@@ -4,8 +4,12 @@ A vue component input that emulates bootstrap's formGroup formControl and is-val
 
 ## Demo
 
-- [Codesandbox](https://codesandbox.io/s/github/fabrigeas/vue-formgroup)
-- [Demo](https://d04tu.csb.app/)
+* [Codesandbox](https://codesandbox.io/s/github/fabrigeas/vue-formgroup)
+* [Demo](https://d04tu.csb.app/)
+
+## Screenshots
+
+![alt text](./screenshot.png)
 
 ## usage
 
@@ -54,6 +58,7 @@ A vue component input that emulates bootstrap's formGroup formControl and is-val
         data: ()=>({
           name: ""
         }),
+
       }
       </script>
     </script>
@@ -109,8 +114,7 @@ Update :model manually. This is useful when you want to perform addidional valid
       >
     </div>
 
-
-### type {String} [text, date, checkbox, select, textarea,...] 
+### type {String} [text, date, checkbox, select, textarea, ...] 
 
 text
 
@@ -214,7 +218,6 @@ select
         </select>
       </div>
 
-
 ### label {String} - The label for the input
 
     <formGroup 
@@ -267,7 +270,6 @@ invalid=true
         model="some value"
       >
     </div>
-
 
 ### validFeedback {String} [optional] - The text to be displayed if input is valid
 
@@ -377,7 +379,6 @@ Must be combined with [:invalid=true](###invalid)
       
     </div>
 
-
 ### data {Object} - input.dataset
 
     <formGroup 
@@ -404,8 +405,7 @@ Must be combined with [:invalid=true](###invalid)
 
 ## Todo
 
-- Migrate to typescrip
-- Implement type=checkbox
-- Implement other event types
-- Reduce the size of css file by importing only required classes from bootstrap
-
+* Migrate to typescrip
+* Implement type=checkbox
+* Implement other event types
+* Reduce the size of css file by importing only required classes from bootstrap

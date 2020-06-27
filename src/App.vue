@@ -1,33 +1,78 @@
 <template>
   <div id="app">
-    {{name}}
-      <formGroup 
-      :label="'Name'"
-      :invalid="name.length < 3"
-      :invalidFeedback="'Please fill this field!!'"
-      :validFeedback="'looks good!'"
-      :model.sync="name"/>
+    <div class="container">
+      <p>Text:{{ text }}</p>
+      <p>textarea: {{ textarea }}</p>
+      <p>Date:{{ date }}</p>
+      <p>Number:{{ number }}</p>
+      <p>Color:{{ color }}</p>
+      <p>Select: {{ select }}</p>
+
+      <FormGroup
+        label="Text"
+        :model.sync="text"
+        :attrs="{
+          required: true
+        }"
+      >
+      </FormGroup>
+
+      <FormGroup label="Email:" :model.sync="email" :attrs="emailAttributes">
+      </FormGroup>
+
+      <FormGroup label="Textarea" type="textarea" :model.sync="textarea">
+        {{ textarea }}
+      </FormGroup>
+
+      <FormGroup
+        label="Date"
+        type="date"
+        :model.sync="date"
+        :attrs="{ required: true }"
+      >
+      </FormGroup>
+
+      <FormGroup label="Number" type="number" :model.sync="number"> </FormGroup>
+
+      <FormGroup label="Color" type="color" :model.sync="color"> </FormGroup>
+
+      <FormGroup type="select" label="Select" :model.sync="select">
+        <option>Male</option>
+        <option>Female</option>
+      </FormGroup>
+    </div>
   </div>
 </template>
 
-<script>
-import formGroup from './components/formGroup.vue'
+<script lang="ts">
+import Vue from "vue";
+import FormGroup from "./components/FormGroup.vue";
 
-export default {
-  name: 'App',
-  data: ()=>({
-    name: ""
-  }),
+export default Vue.extend({
+  name: "App",
   components: {
-    formGroup
+    FormGroup
+  },
+
+  data() {
+    return {
+      text: "",
+      email: "",
+      textarea: "",
+      select: "",
+      date: "",
+      number: "0",
+      color: "#112233",
+      emailAttributes: {
+        placeholder: "Your email",
+        pattern: "^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,})+$"
+      }
+    };
   }
-}
+});
 </script>
 
-<style>
-#app {
-  padding: 2rem;
-}
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -35,5 +80,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.container {
+  margin: auto;
+  max-width: 500px;
 }
 </style>

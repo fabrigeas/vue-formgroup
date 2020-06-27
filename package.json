@@ -1,6 +1,6 @@
 {
   "name": "form-group",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -42,6 +42,7 @@
     "vue-template-compiler": "^2.6.11"
   },
   "main": "./dist/vue-form-group.common.js",
+  "index": "./dist/index.js",
   "files": [
     "dist/*",
     "src/*",
@@ -68,6 +69,5 @@
   },
   "bugs": {
     "url": "https://github.com/fabrigeas/vue-formgroup/issues"
-  },
-  "homepage": "/"
+  }
 }

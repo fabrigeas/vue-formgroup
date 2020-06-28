@@ -1,7 +1,7 @@
-import Vue from 'vue';
-import formGroup from './formGroup.vue';
+import Vue from "vue";
+import FormGroup from "./FormGroup.vue";
 const Components = {
-  formGroup,
+  FormGroup
 };
 
 Object.keys(Components).forEach(name => {

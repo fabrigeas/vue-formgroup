@@ -1,6 +1,6 @@
 # vue-form-group
 
-A vue component input that emulates bootstrap's formGroup formControl and is-valid
+A vue component input that emulates bootstrap's FormGroup formControl and is-valid
 
 ## Demo
 
@@ -22,7 +22,7 @@ A vue component input that emulates bootstrap's formGroup formControl and is-val
     <template>
       <div id="app">
         {{name}}
-          <formGroup 
+          <FormGroup 
             :invalid="name.length < 3"
             :invalidFeedback="'Please fill this field!!'"
             :validFeedback="'looks good!'"
@@ -32,7 +32,7 @@ A vue component input that emulates bootstrap's formGroup formControl and is-val
     </template>
 
     <script>
-      import formGroup from 'vue-formGroup'
+      import FormGroup from 'vue-FormGroup'
 
       export default {
         data: ()=>({
@@ -48,7 +48,7 @@ A vue component input that emulates bootstrap's formGroup formControl and is-val
 
     <template>
       {{name}}                  <-- Bound together
-      <formGroup  
+      <FormGroup  
         :model.sync="name"      <-- Use .sync for 2-way-binmding
       />
     <template>
@@ -76,7 +76,7 @@ A vue component input that emulates bootstrap's formGroup formControl and is-val
 Update :model manually. This is useful when you want to perform addidional validations
 
     <template>
-      <formGroup  
+      <FormGroup  
         :model="newPassword"
         @update:model="($event)=>validateNewPassword('newPassword', $event)"
       />
@@ -118,7 +118,7 @@ Update :model manually. This is useful when you want to perform addidional valid
 
 text
 
-      <formGroup 
+      <FormGroup 
         :model.sync="Hello"
       />
 
@@ -134,7 +134,7 @@ text
 
 date (Datepicker)
 
-      <formGroup 
+      <FormGroup 
         type="date"
         :model.sync="23.09.1989"
       />
@@ -151,7 +151,7 @@ date (Datepicker)
 
 number
 
-      <formGroup 
+      <FormGroup 
         type="number"
         :model.sync="123"
       />
@@ -168,7 +168,7 @@ number
 
 checkbox
 
-      <formGroup 
+      <FormGroup 
         type="checkbox"
         :model.sync="male"
       />
@@ -185,7 +185,7 @@ checkbox
 
 textarea
 
-      <formGroup 
+      <FormGroup 
         type="textarea"
         :model.sync="Some text content"
       />
@@ -200,7 +200,7 @@ textarea
 
 select
 
-      <formGroup 
+      <FormGroup 
         type="select"
         :model.sync="beta"
       >
@@ -220,7 +220,7 @@ select
 
 ### label {String} - The label for the input
 
-    <formGroup 
+    <FormGroup 
       :label="'Name'"
       :model.sync="name"
     />
@@ -240,7 +240,7 @@ select
 
 invalid = true
 
-    <formGroup 
+    <FormGroup 
       :model.sync="name" 
     />
 
@@ -256,7 +256,7 @@ invalid = true
 
 invalid=true
 
-    <formGroup 
+    <FormGroup 
       :model.sync="name" 
       :invalid="true
     />
@@ -275,7 +275,7 @@ invalid=true
 
 Must be combined with [invalid=false](###invalid)
 
-    <formGroup 
+    <FormGroup 
       :model.sync="name" 
       :invalid="name.length < 3"
       :validFeedback="'Perfect!'"
@@ -296,7 +296,7 @@ Must be combined with [invalid=false](###invalid)
 
 Must be combined with [:invalid=true](###invalid)
 
-    <formGroup 
+    <FormGroup 
       :model.sync="name" 
       :invalidFeedback="'Perfect!'"
       :invalid="name.length < 3"
@@ -315,7 +315,7 @@ Must be combined with [:invalid=true](###invalid)
 
 ### css {Object} [optional] - css for the input only
 
-    <formGroup 
+    <FormGroup 
       :model.sync="name" 
       :css = {
         "background" : "red !important",
@@ -336,7 +336,7 @@ Must be combined with [:invalid=true](###invalid)
 
 ### classes {String} - classList delimitted by spance or comma
 
-    <formGroup 
+    <FormGroup 
       :model.sync="name" 
       :classes: "alpha, beta, charly delta"
     />
@@ -353,7 +353,7 @@ Must be combined with [:invalid=true](###invalid)
 
 ### props {Object} - html properties and attributes
 
-    <formGroup 
+    <FormGroup 
       :model.sync="name" 
       :props:{
           placeholder: "Placeholder text",
@@ -381,7 +381,7 @@ Must be combined with [:invalid=true](###invalid)
 
 ### data {Object} - input.dataset
 
-    <formGroup 
+    <FormGroup 
       :model.sync="name" 
       :data = {
         "name" : "fabrigeas",

@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils";
 import FormGroup from "@/components/FormGroup.vue";
 
-describe("formGroup", () => {
+describe("FormGroup", () => {
   it("Default should be input[type='text']", () => {
     let model = "initial value";
     const wrapper = mount(FormGroup, {

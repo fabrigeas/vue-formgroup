@@ -1,13 +1,13 @@
 import { mount } from "@vue/test-utils";
-import FormGroup from "@/components/formGroup";
+import FormGroup from "@/components/FormGroup";
 
-describe("formGroup", () => {
+describe("FormGroup", () => {
   it("Defualt should be input[type='text']", () => {
     let model = "initial value";
     const wrapper = mount(FormGroup, {
       propsData: {
-        model,
-      },
+        model
+      }
     });
 
     const input = wrapper.find("input");
@@ -26,8 +26,8 @@ describe("formGroup", () => {
     const wrapper = mount(FormGroup, {
       propsData: {
         model: "some value",
-        label: labelValue,
-      },
+        label: labelValue
+      }
     });
 
     const input = wrapper.find("input");
@@ -43,8 +43,8 @@ describe("formGroup", () => {
     const wrapper = mount(FormGroup, {
       propsData: {
         model: "initial value",
-        invalid: true,
-      },
+        invalid: true
+      }
     });
 
     let input = wrapper.find("input");
@@ -53,7 +53,7 @@ describe("formGroup", () => {
     expect(input.classes("is-valid")).toBe(false);
 
     await wrapper.setProps({
-      invalid: false,
+      invalid: false
     });
 
     input = wrapper.find("input");
@@ -67,8 +67,8 @@ describe("formGroup", () => {
     const wrapper = mount(FormGroup, {
       propsData: {
         model: "Some value",
-        invalidFeedback,
-      },
+        invalidFeedback
+      }
     });
 
     expect(wrapper.find(".invalid-feedback").exists()).toBe(true);
@@ -76,7 +76,7 @@ describe("formGroup", () => {
 
     await wrapper.setProps({
       validFeedback,
-      invalidFeedback: null,
+      invalidFeedback: null
     });
 
     expect(wrapper.find(".valid-feedback").exists()).toBe(true);
@@ -87,8 +87,8 @@ describe("formGroup", () => {
     const wrapper = mount(FormGroup, {
       propsData: {
         type: "checkbox",
-        model: "true",
-      },
+        model: "true"
+      }
     });
 
     expect(wrapper.find("input[type='checkbox']").exists()).toBe(true);
@@ -98,8 +98,8 @@ describe("formGroup", () => {
     const wrapper = mount(FormGroup, {
       propsData: {
         type: "date",
-        model: "23.09.1989",
-      },
+        model: "23.09.1989"
+      }
     });
 
     const datepicker = wrapper.find("input[type='date']");
@@ -110,8 +110,8 @@ describe("formGroup", () => {
     const wrapper = mount(FormGroup, {
       propsData: {
         type: "number",
-        model: "12345",
-      },
+        model: "12345"
+      }
     });
 
     expect(wrapper.find("input[type='number']").exists()).toBe(true);
@@ -121,8 +121,8 @@ describe("formGroup", () => {
     const wrapper = mount(FormGroup, {
       propsData: {
         type: "textarea",
-        model: "Hello world",
-      },
+        model: "Hello world"
+      }
     });
 
     const textarea = wrapper.find("textarea");
@@ -133,15 +133,15 @@ describe("formGroup", () => {
     const wrapper = mount(FormGroup, {
       propsData: {
         type: "select",
-        model: "Beta",
+        model: "Beta"
       },
       slots: {
         default: [
           "<option value='Alpha'>Alpha</option>",
           "<option value='Beta'>Beta</option>",
-          "<option value='Charly'>Charly</option>",
-        ],
-      },
+          "<option value='Charly'>Charly</option>"
+        ]
+      }
     });
 
     const select = wrapper.find("select");
@@ -159,8 +159,8 @@ describe("formGroup", () => {
     const initialValue = "initial value";
     const wrapper = mount(FormGroup, {
       propsData: {
-        model: initialValue,
-      },
+        model: initialValue
+      }
     });
 
     let attributes;
@@ -178,7 +178,7 @@ describe("formGroup", () => {
     const changedValue = "Value changed";
     await wrapper.setProps({
       model: changedValue,
-      invalid: true,
+      invalid: true
     });
 
     input = wrapper.find("input[type='text']");
@@ -192,8 +192,8 @@ describe("formGroup", () => {
     const initialValue = "initial value";
     const wrapper = mount(FormGroup, {
       propsData: {
-        model: initialValue,
-      },
+        model: initialValue
+      }
     });
 
     const input = wrapper.find("input");
@@ -201,19 +201,18 @@ describe("formGroup", () => {
     expect(input.exists()).toBe(true);
 
     await input.trigger("keyup", {
-      key: "a",
+      key: "a"
     });
 
     expect(input.emitted().update).toBeTruthy();
   });
 
-
   it("Should accept classes", () => {
     const wrapper = mount(FormGroup, {
       propsData: {
         model: "initialValue",
-        classes: "alpha, beta, charly delta",
-      },
+        classes: "alpha, beta, charly delta"
+      }
     });
 
     const attributes = wrapper.find("input").attributes();
@@ -237,9 +236,9 @@ describe("formGroup", () => {
           placeholder,
           autocomplete,
           required,
-          name,
-        },
-      },
+          name
+        }
+      }
     });
 
     const attributes = wrapper.find("input").attributes();
@@ -258,9 +257,9 @@ describe("formGroup", () => {
         model: "initialValue",
         data: {
           name,
-          user: JSON.stringify(user),
-        },
-      },
+          user: JSON.stringify(user)
+        }
+      }
     });
 
     const attributes = wrapper.find("input").attributes();
@@ -271,15 +270,15 @@ describe("formGroup", () => {
 
   describe("Should accept Events", () => {
     it("keydown", async () => {
-      const keydown = (event) => {};
+      const keydown = event => {};
 
       const wrapper = mount(FormGroup, {
         propsData: {
           model: "initialValue",
           events: {
-            keydown,
-          },
-        },
+            keydown
+          }
+        }
       });
 
       const input = wrapper.find("input");
@@ -300,9 +299,9 @@ describe("formGroup", () => {
         model: "Some value",
         css: {
           background: "red !important",
-          padding: "1rem !important",
-        },
-      },
+          padding: "1rem !important"
+        }
+      }
     });
 
     const style = wrapper.find("input").attributes("style");

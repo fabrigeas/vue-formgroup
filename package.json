@@ -42,7 +42,6 @@
     "vue-template-compiler": "^2.6.11"
   },
   "main": "./dist/vue-form-group.common.js",
-  "index": "./dist/index.js",
   "files": [
     "dist/*",
     "src/*",
@@ -51,14 +50,14 @@
     "*.js",
     "plugins/*"
   ],
-  "description": "## A vue component that ressembles bootstraps formGroup + formControl",
+  "description": "## A vue component that resembles bootstraps FormGroup + formControl",
   "directories": {
     "test": "tests"
   },
   "keywords": [
     "vue",
     "vueComponent",
-    "formGroup",
+    "FormGroup",
     "formControl"
   ],
   "author": "Fabrice Feugang Kemegni",

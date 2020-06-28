@@ -16,7 +16,7 @@ A vue component input that emulates bootstrap's FormGroup formControl and is-val
     npm install @fabrigeas/react-formg-roup
 
     ## register the component
-    src/main.js
+    src/main.ts
     import 'form-group';
 
     <template>

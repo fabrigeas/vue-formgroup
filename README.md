@@ -9,7 +9,7 @@ A vue component input that emulates bootstrap's FormGroup formControl and is-val
 
 ## Screenshots
 
-![alt text](./screenshot.png)
+![alt text](./screenshot.PNG)
 
 ## usage
 

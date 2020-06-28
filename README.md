@@ -13,7 +13,7 @@ A vue component input that emulates bootstrap's FormGroup formControl and is-val
 
 ## usage
 
-    npm install @fabrigeas/react-formg-roup
+    npm install vue-formgroup
 
     ## register the component
     src/main.ts

@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { VNode } from "vue";
 import { v4 as uuidv4 } from "uuid";
 
 const FormControl = Vue.extend({
@@ -44,7 +44,7 @@ const FormControl = Vue.extend({
     events: Object
   },
 
-  render: function(createElement) {
+  render: function(createElement): VNode {
     return createElement(
       this.type === "textarea" || this.type === "select" ? this.type : "input",
       {
@@ -86,7 +86,6 @@ const FormControl = Vue.extend({
         textarea.style.height = "auto";
         textarea.style.height = textarea.scrollHeight + "px";
       }
-
       const value = (event.target as HTMLInputElement).value;
       this.$emit("update", value);
     }

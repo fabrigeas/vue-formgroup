@@ -59,7 +59,8 @@
     "vue",
     "vueComponent",
     "FormGroup",
-    "formControl"
+    "formControl",
+    "autoResize"
   ],
   "author": "Fabrice Feugang Kemegni",
   "license": "MIT",

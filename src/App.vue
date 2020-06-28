@@ -1,12 +1,14 @@
 <template>
   <div id="app">
     <div class="container">
-      <p>Text:{{ text }}</p>
-      <p>textarea: {{ textarea }}</p>
-      <p>Date:{{ date }}</p>
-      <p>Number:{{ number }}</p>
-      <p>Color:{{ color }}</p>
-      <p>Select: {{ select }}</p>
+      <h4>Below are examples of how the this component look like</h4>
+      Text:{{ text }}<br />
+      textarea: {{ textarea }}<br />
+      Date:{{ date }}<br />
+      Email:{{ email }}<br />
+      Number:{{ number }}<br />
+      Color:{{ color }}<br />
+      Select: {{ select }}<br />
 
       <FormGroup
         label="Text"
